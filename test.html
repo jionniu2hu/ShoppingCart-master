@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -9,38 +9,48 @@
 </head>
 
 <body>
-
-    <script src="js/shoppingcart.js"></script>
+    <script src="js/main.js"></script>
     <script>
-        // 创建一个购物车
+        // 创建购物车
         var cart = new ShoppingCart();
         cart.clearCart();
+        // 创建商品
+        var product = new Product('01', '鼠标', '01.jpg', 9);
 
-        //  创建一个商品
-        var product = new Product('01', '新款面膜', '01.jpg', 1)
-        //  创建一个订单 
-        var order = new Order(product, 3, true);
-        // 将订单order置入购物车（本地存储）
+        // 创建订单
+        var order = new Order(product, 2, true);
+        // var title = order.title;
+        // console.log(title);
+
+        // 购物车数据
+        // var cartData = new CartData();
+
+        // 将订单加入购物车数据
+        // cartData.orderList.push(order);
+        // cartData.totalQty = order.qty;
+        // cartData.totaAmount = order.qty * order.price;
+        // cartData.units = 1;
+        // console.log(cartData);
+
+
+        // 将购物车数据写入本地存储
+        // cart.setDataToLocalSatorge(cartData);
         cart.addToCart(order);
 
 
-        // 又创建第2个商品
-        product = new Product('02', '书', '02.jpg', 10)
-        // 又创建第2订单
-        order = new Order(product, 6, true);
+        // 第二个
+        product = new Product('02', '米饭', '02.jpg', 9);
+        order = new Order(product, 4, true);
+        cart.addToCart(order);
+        // 第三个
+        product = new Product('03', '剃须刀', '03.jpg', 9);
+        order = new Order(product, 6, false);
+
         // 将新商品加入购物车（本地存储）
-        cart.addToCart(order);
-
-
-        // 又创建第3个商品
-        product = new Product('03', '香水', '03.jpg', 19.5)
-        // 又创建第3个订单
-        order = new Order(product, 8, false);
-        // 将新商品加入购物车（本地存储）
-        cart.addToCart(order);
-
+        cart.addToCart(order);        
         console.log(cart.getSelectedQty());
-        console.log(cart.getSelectedAmount());
+        console.log(cart.getSelectedAmount());        
+
 
         cart.setItemSelectStatus('03', true);
         console.log(cart.getSelectedQty());
@@ -51,7 +61,6 @@
         cart.changeQty('03','-');
         cart.changeQty('03','-');
         cart.changeQty('03','-');
-
     </script>
 </body>
 
